@@ -1,0 +1,5 @@
+ImageDupeGrouper/.vs/
+ImageDupeGrouper/bin/
+ImageDupeGrouper/obj/ImageDupeGrouper.csproj.nuget.dgspec.json
+ImageDupeGrouper/obj/
+ImageDupeGrouper/Properties/launchSettings.json
