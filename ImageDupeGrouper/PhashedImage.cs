@@ -10,8 +10,11 @@
         public PhashedImage(string filePath)
         {
             this.FilePath = filePath;
-            using var bitmap = (Bitmap)Image.FromFile(filePath);
-            this.Phash = ImagePhash.ComputeDigest(bitmap.ToLuminanceImage());
+
+            using (var bitmap = (Bitmap)Image.FromFile(filePath))
+            {
+                this.Phash = ImagePhash.ComputeDigest(bitmap.ToLuminanceImage());
+            }
         }
 
         public string FilePath { get; }
