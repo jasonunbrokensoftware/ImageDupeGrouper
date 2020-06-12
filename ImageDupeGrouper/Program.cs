@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Shipwreck.Phash;
@@ -20,12 +21,10 @@
 
             var images = new ConcurrentBag<PhashedImage>();
 
-            Parallel.ForEach(
-                files,
-                filePath =>
-                {
-                    images.Add(new PhashedImage(filePath));
-                });
+            foreach (string file in files)
+            {
+                images.Add(new PhashedImage(file));
+            }
 
             var groups = new ConcurrentBag<ConcurrentBag<PhashedImage>>();
 
@@ -66,7 +65,7 @@
 
             foreach (var group in groups)
             {
-                foreach (var image in group)
+                foreach (var image in group.OrderByDescending(i => i.PixelCount).ThenByDescending(i => i.FileSize))
                 {
                     Console.WriteLine(image.FilePath);
                 }
