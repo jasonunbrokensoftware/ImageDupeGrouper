@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Globalization;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using Shipwreck.Phash;
 
@@ -11,7 +11,7 @@
     {
         public static void Main(string[] args)
         {
-            float requiredScore = float.Parse(args[0]);
+            float requiredScore = float.Parse(args[0], CultureInfo.InvariantCulture);
             var files = new ConcurrentBag<string>();
 
             for (int i = 1; i < args.Length; i++)
